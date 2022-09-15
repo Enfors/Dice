@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+
+import random
+
+num_values = 6
+max_value = 4
+default_personality = [2 for x in range(0, num_values)]
+
+
+def gen_personality():
+    p = default_personality.copy()
+
+    while max(p) < max_value:
+        value_to_inc = random.randint(0, num_values - 1)
+        p[value_to_inc] += 1
+
+        done = False
+
+        while not done:
+            value_to_dec = random.randint(0, num_values - 1)
+            if value_to_dec == value_to_inc:
+                continue
+            if p[value_to_dec] < 1:
+                continue
+            p[value_to_dec] -= 1
+            done = True
+
+    assert(sum(p) == num_values * 2)
+
+    print(p)
+    return p
+
+
+def gen_rel_matrix(num_p: int):
+    ps = []
+    current = 0
+
+    # Generate personalities
+    while current < num_p:
+        ps.append(gen_personality())
+        current += 1
+
+    row = 0
+    total = 0
+    total_matches = 0
+    while row < num_p:
+        col = 0
+        while col < num_p:
+            if col + row < num_p:
+                total += 1
+                if row == col:
+                    print("   ", end="")
+                    col += 1
+                    continue
+                matches = compare_ps(ps[row], ps[col])
+                if matches > 2:
+                    flag = "+"
+                    total_matches += 1
+                else:
+                    flag = " "
+
+                print(f"{matches:-2}{flag}", end="")
+            col += 1
+
+        print()
+        row += 1
+
+    print(f"Total: {total}, matches: {total_matches}")
+
+
+def compare_ps(p1: int, p2: int):
+    current = 0
+    num_matches = 0
+
+    while current < num_values:
+        if p1[current] == p2[current]:
+            num_matches += 1
+        current += 1
+
+    return num_matches
+
+
+if __name__ == "__main__":
+    gen_rel_matrix(20)
