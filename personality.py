@@ -32,28 +32,33 @@ def gen_personality():
 
 
 def gen_rel_matrix(num_p: int):
-    ps = []
+    men = []
+    women = []
     current = 0
 
     # Generate personalities
     while current < num_p:
-        ps.append(gen_personality())
+        print(f"Man   {current+1:-2}: ", end="")
+        men.append(gen_personality())
+        print(f"Woman {current+1:-2}: ", end="")
+        women.append(gen_personality())
         current += 1
 
     row = 0
     total = 0
     total_matches = 0
+    print("   ", end="")
+    [print(f"{x+1:-3}", end="") for x in range(0, num_p)]
+    print()
     while row < num_p:
         col = 0
+        print(f"{row+1:-2}: ", end="")
         while col < num_p:
             if col + row < num_p:
                 total += 1
-                if row == col:
-                    print("   ", end="")
-                    col += 1
-                    continue
-                matches = compare_ps(ps[row], ps[col])
-                if matches > 2:
+                matches = compare_ps(men[row], women[col])
+                # If more than half the numbers are matches:
+                if matches > num_values / 2:
                     flag = "+"
                     total_matches += 1
                 else:
@@ -73,7 +78,7 @@ def compare_ps(p1: int, p2: int):
     num_matches = 0
 
     while current < num_values:
-        if p1[current] == p2[current]:
+        if abs(p1[current] - p2[current]) <= 1:
             num_matches += 1
         current += 1
 
@@ -81,4 +86,4 @@ def compare_ps(p1: int, p2: int):
 
 
 if __name__ == "__main__":
-    gen_rel_matrix(20)
+    gen_rel_matrix(14)
