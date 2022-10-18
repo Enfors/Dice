@@ -9,7 +9,7 @@ def main():
     prev_desc = None
     prev_day = 0
     wetness = dice.d(50) + dice.d(50)
-    all_wetness = [ ]
+    all_wetness = []
 
     # print("| Day  | Watch | Weather              | Wind |")
     # print("|------+-------+----------------------+------|")
@@ -43,7 +43,7 @@ def main():
             if wetness > 0:
                 runoff = wetness // 20 or 1
 
-                wetness -= runoff # Decrease by 20%
+                wetness -= runoff  # Decrease by 20%
 
             print(f"| {wetness:-3d} |")
             all_wetness.append(wetness)
