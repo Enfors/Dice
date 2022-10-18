@@ -13,8 +13,8 @@ def main():
 
     # print("| Day  | Watch | Weather              | Wind |")
     # print("|------+-------+----------------------+------|")
-    print("| Day  | Watch | Ch | Vl | Weather              | Wind |")
-    print("|------+-------+----+----+----------------------+------|")
+    print("| Day  | Watch | Ch | Vl | Weather              | Wind | Wet |")
+    print("|------+-------+----+----+----------------------+------+-----|")
 
     for day in range(1, 1500):
         for watch in range(1, 4):
