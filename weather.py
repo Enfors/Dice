@@ -16,7 +16,7 @@ def main():
     print("| Day  | Watch | Ch | Vl | Weather              | Wind | Wet |")
     print("|------+-------+----+----+----------------------+------+-----|")
 
-    for day in range(1, 1500):
+    for day in range(1, 18):
         for watch in range(1, 4):
             if day != prev_day:
                 print(f"| {day:-4d} ", end="")
