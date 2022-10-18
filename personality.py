@@ -58,7 +58,7 @@ def gen_rel_matrix(num_p: int):
                 total += 1
                 matches = compare_ps(men[row], women[col])
                 # If more than half the numbers are matches:
-                if matches > num_values / 2:
+                if matches > num_values / 2 + 1:
                     flag = "+"
                     total_matches += 1
                 else:
@@ -86,4 +86,4 @@ def compare_ps(p1: int, p2: int):
 
 
 if __name__ == "__main__":
-    gen_rel_matrix(14)
+    gen_rel_matrix(12)
